@@ -13,13 +13,14 @@
 
       var element1 = document.getElementById("int1");
       var element2 = document.getElementById("int2");
-      var prompt_a = prompt("一つ目の数を入れてください");
-      var prompt_b = prompt("二つ目の数を入れてください");
+      var prompt_a = element1.value;
+      var prompt_b = element2.value;
 
-      var result = parseInt(prompt_a) + parseInt(prompt_b);
+      var result = parseInt(  prompt_a) + parseInt( prompt_b);
 
       alert(result);
     }
     </script>
   </body>
 </html>
+element1.value
