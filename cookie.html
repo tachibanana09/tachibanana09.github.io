@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      img{width:80%;}
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+    count=0;
+    function cookie_click() {
+      span = document.getElementById('cookie_count')
+      count++;
+      span.textContent = count;
+    }
+    function sisiro() {
+      setInterval(sisiron,1000);
+    }
+    function sisiron() {
+      count +=1;
+      span = document.getElementById('cookie_count')
+      span.textContent = count;
+    }
+
+    </script>
+    <p><span id="cookie_count"></span>匹</p>
+    <img onclick="cookie_click()"src="SSRB.jpg" alt="">
+    <ul>
+      <li onclick="sisiro()">獅白　ぼたん</li>
+      <li></li>
+    </ul>
+  </body>
+</html>
