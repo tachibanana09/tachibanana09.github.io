@@ -4,32 +4,88 @@
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
-      img{width:80%;}
+    body{margin:0;height: 100vh}
+
+    .container{display:flex;}
+    .item1{flex-grow:20;background-image:url("haikei.png");}
+    .item2{flex-grow:2}
+    .item3{flex-grow:3}
+
+      img{width:150px;}
     </style>
   </head>
   <body>
     <script type="text/javascript">
-    count=0;
-    function cookie_click() {
-      span = document.getElementById('cookie_count')
-      count++;
-      span.textContent = count;
-    }
-    function sisiro() {
-      setInterval(sisiron,1000);
-    }
-    function sisiron() {
-      count +=1;
-      span = document.getElementById('cookie_count')
-      span.textContent = count;
+
+    let ls_count = localStorage.getItem("ls_count");
+    if(ls_count){
+      count = parseInt(ls_count);
+    }else{
+      count = 0
     }
 
+    setInterval(save_action,1000);
+    function save_action() {
+      localStorage.setItem("ls_count",count);
+    }
+    count = 0;
+    sisiro_count=0;
+    neneti_count=0;
+
+    setInterval(screen_update,10);
+    function screen_update() {
+      span = document.getElementById('cookie_count')
+      span.textContent = count;
+    }
+    function cookie_click() {
+      count++;
+    }
+
+    function sisiro() {
+      if(count>=100){
+        count-=100;
+        sisiro_count++;
+      setInterval(auto_countUp,1000,1);
+     }
+    }
+    function neneti() {
+      if(count>=300){
+        count-=300;
+        neneti_count++;
+      setInterval(auto_countUp,1000,8);
+     }
+    }
+    function omaru() {
+      if(count>=500){
+        count-=500;
+        omaru_count++;
+      setInterval(auto_countup,1000,16);
+    }
+  }
+    function auto_countUp(num){
+      count+=num;
+    }
+
+
     </script>
-    <p><span id="cookie_count"></span>匹</p>
+    <div class="container">
+    <div class="item1">
+    <p>
+    <span id="cookie_count"></span>匹
+    </p>
     <img onclick="cookie_click()"src="SSRB.jpg" alt="">
+    </div>
+    <div class="item2">
+    製作途中
+    </div>
+    <div class="item3">
     <ul>
       <li onclick="sisiro()">獅白　ぼたん</li>
-      <li></li>
+      <li onclick="neneti()">桃鈴　ねね</li>
+      <li onclick="omaru()">尾丸　ポルカ</li>
+      <li onclick="wami-()">雪花　ラミィ</li>
     </ul>
+    </div>
+    </div>
   </body>
 </html>
