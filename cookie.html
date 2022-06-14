@@ -16,6 +16,9 @@
     .item3{flex-grow:3}
 
       img{width:150px;}
+      #build_sell{
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -54,13 +57,23 @@
         count-=100;
         sisiro_count++;
       setInterval(auto_countUp,1000,1);
+        event_ids.push(r_id);
      }
     }
+    function sell_(){
+           let r_id=event_ids.pop();
+           clearInterval(r_id);
+         }
     function neneti() {
       if(count>=300){
         count-=300;
         neneti_count++;
       setInterval(auto_countUp,1000,8);
+     }
+     function sell_neneti(){
+       let r_id=event_ids.pop();
+       clearInterval(r_id);
+
      }
     }
     function omaru() {
@@ -69,9 +82,28 @@
         omaru_count++;
       setInterval(auto_countup,1000,16);
     }
+    function sell_omaru(){
+           let r_id=event_ids.pop();
+           clearInterval(r_id);
+
+         }
   }
     function auto_countUp(num){
       count+=num;
+    }
+
+    function buildSwitch() {
+      let buy_element=document.getElementById('build_buy');
+         let sell_element=document.getElementById('build_sell');
+
+        if( buy_element.style.display !="none"){
+          buy_element.style.display ="none";
+          sell_element.style.display ="block";
+        } else {
+            buy_element.style.display="block";
+              sell_element.style.display="none";
+        }
+
     }
 
 
@@ -87,12 +119,23 @@
     製作途中
     </div>
     <div class="item3">
+      <div id="build_buy">
+      <span onclick="buildSwitch()">購入</span>
     <ul>
       <li onclick="sisiro()">獅白　ぼたん</li>
       <li onclick="neneti()">桃鈴　ねね</li>
       <li onclick="omaru()">尾丸　ポルカ</li>
       <li onclick="wami-()">雪花　ラミィ</li>
     </ul>
+    </div>
+    <div id="build_sell">
+      売却
+      <ul>
+        <li onclick="sisiro()">獅白　ぼたん</li>
+        <li onclick="neneti()">桃鈴　ねね</li>
+        <li onclick="omaru()">尾丸　ポルカ</li>
+        <li onclick="wami-()">雪花　ラミィ</li>
+      </ul>
     </div>
     </div>
   </body>
