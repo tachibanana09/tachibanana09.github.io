@@ -24,6 +24,34 @@
   <body>
     <script type="text/javascript">
 
+    let event_ids=[];
+
+    class Building{
+      constructor(time,num){
+        this.event_ids = [];
+        this.interval_time = time;
+        this.add_num = num;
+      }
+      count_up(num){
+       count+=num
+      }
+      buy(){
+        let self = this;
+        let return_id = setInterval(function(){
+          self.count_up(self.add_num);
+        },1000);
+        this.event_ids.push(return_id);
+      }
+      sell(){
+        let return_id = this.event_ids.pop();
+        clearInterval(return_id);
+      }
+    }
+
+      let sisiro = new Building(1000,1);
+      let neneti = new Building(1000,8);
+      let omaru  = new Building(1000,16);
+
     let ls_count = localStorage.getItem("ls_count");
     if(ls_count){
       count = parseInt(ls_count);
@@ -52,7 +80,7 @@
       count++;
     }
 
-    function sisiro() {
+  /*  function sisiro() {
       if(count>=100){
         count-=100;
         sisiro_count++;
@@ -87,22 +115,22 @@
            clearInterval(r_id);
 
          }
-  }
+  }*/
     function auto_countUp(num){
       count+=num;
     }
 
     function buildSwitch() {
       let buy_element=document.getElementById('build_buy');
-         let sell_element=document.getElementById('build_sell');
+      let sell_element=document.getElementById('build_sell');
 
-        if( buy_element.style.display !="none"){
-          buy_element.style.display ="none";
-          sell_element.style.display ="block";
-        } else {
-            buy_element.style.display="block";
-              sell_element.style.display="none";
-        }
+      if( buy_element.style.display !="none"){
+        buy_element.style.display ="none";
+        sell_element.style.display ="block";
+      } else {
+        buy_element.style.display="block";
+        sell_element.style.display="none";
+      }
 
     }
 
@@ -122,19 +150,19 @@
       <div id="build_buy">
       <span onclick="buildSwitch()">購入</span>
     <ul>
-      <li onclick="sisiro()">獅白　ぼたん</li>
-      <li onclick="neneti()">桃鈴　ねね</li>
-      <li onclick="omaru()">尾丸　ポルカ</li>
-      <li onclick="wami-()">雪花　ラミィ</li>
+      <li onclick="sisiro.buy()">獅白　ぼたん</li>
+      <li onclick="neneti.buy()">桃鈴　ねね</li>
+      <li onclick="omaru.buy()">尾丸　ポルカ</li>
+      <li onclick="wami-.buy()">雪花　ラミィ</li>
     </ul>
     </div>
     <div id="build_sell">
-      売却
+      <span onclick="buildSwitch()">売却</span>
       <ul>
-        <li onclick="sisiro()">獅白　ぼたん</li>
-        <li onclick="neneti()">桃鈴　ねね</li>
-        <li onclick="omaru()">尾丸　ポルカ</li>
-        <li onclick="wami-()">雪花　ラミィ</li>
+        <li onclick="sisiro.sell()">獅白　ぼたん</li>
+        <li onclick="neneti.sell()">桃鈴　ねね</li>
+        <li onclick="omaru.sell()">尾丸　ポルカ</li>
+        <li onclick="wami-.sell()">雪花　ラミィ</li>
       </ul>
     </div>
     </div>
