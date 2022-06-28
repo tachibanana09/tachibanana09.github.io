@@ -27,30 +27,37 @@
     let event_ids=[];
 
     class Building{
-      constructor(time,num){
+      constructor(time,num,cost){
         this.event_ids = [];
         this.interval_time = time;
         this.add_num = num;
+        this.cost = cost;
+      }
+      get count(){
+        return this.ivaent_ids.length;
       }
       count_up(num){
        count+=num
       }
       buy(){
+        if(count>=this.cost){
+          count-=this.cost;
         let self = this;
         let return_id = setInterval(function(){
           self.count_up(self.add_num);
-        },1000);
+        },self.interval_time);
         this.event_ids.push(return_id);
       }
+    }
       sell(){
         let return_id = this.event_ids.pop();
         clearInterval(return_id);
       }
     }
 
-      let sisiro = new Building(1000,1);
-      let neneti = new Building(1000,8);
-      let omaru  = new Building(1000,16);
+      let sisiro = new Building(1000,1,100);
+      let neneti = new Building(1000,8,300);
+      let omaru  = new Building(1000,16,600);
 
     let ls_count = localStorage.getItem("ls_count");
     if(ls_count){
@@ -69,6 +76,9 @@
 
     setInterval(screen_update,10);
     function screen_update() {
+      var sisiro_count=document.getElementById('sisiro_count');
+      sisiro_count.textContent=sisiro.count;
+
       span = document.getElementById('cookie_count')
       span.textContent = count;
     }
@@ -78,46 +88,6 @@
       void cookie_img.offsetWidth;
       cookie_img.classList.add('animate__animated','animate__bounce');
       count++;
-    }
-
-  /*  function sisiro() {
-      if(count>=100){
-        count-=100;
-        sisiro_count++;
-      setInterval(auto_countUp,1000,1);
-        event_ids.push(r_id);
-     }
-    }
-    function sell_(){
-           let r_id=event_ids.pop();
-           clearInterval(r_id);
-         }
-    function neneti() {
-      if(count>=300){
-        count-=300;
-        neneti_count++;
-      setInterval(auto_countUp,1000,8);
-     }
-     function sell_neneti(){
-       let r_id=event_ids.pop();
-       clearInterval(r_id);
-
-     }
-    }
-    function omaru() {
-      if(count>=500){
-        count-=500;
-        omaru_count++;
-      setInterval(auto_countup,1000,16);
-    }
-    function sell_omaru(){
-           let r_id=event_ids.pop();
-           clearInterval(r_id);
-
-         }
-  }*/
-    function auto_countUp(num){
-      count+=num;
     }
 
     function buildSwitch() {
@@ -150,7 +120,7 @@
       <div id="build_buy">
       <span onclick="buildSwitch()">購入</span>
     <ul>
-      <li onclick="sisiro.buy()">獅白　ぼたん</li>
+      <li onclick="sisiro.buy()">獅白　ぼたん<span id="sisiro_count"></span></li>
       <li onclick="neneti.buy()">桃鈴　ねね</li>
       <li onclick="omaru.buy()">尾丸　ポルカ</li>
       <li onclick="wami-.buy()">雪花　ラミィ</li>
