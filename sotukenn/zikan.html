@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+  <script type="text/javascript">
+    var now = new Date();
+    function LoadProc() {
+      var target = document.getElementById("DateTimeDisp");
+      var rt;
+
+      var Year = now.getFullYear();
+      var Month = now.getMonth()+1;
+      var Date = now.getDate();
+      var Hour = now.getHours();
+      var Min = now.getMinutes();
+      var Sec = now.getSeconds();
+
+      target.innerHTML = Year + "-" + Month + "-" + Date + " " + Hour + ":" + Min + ":" + Sec;
+      rt= Year + "-" + Month + "-" + Date + " " + Hour + ":" + Min + ":" + Sec;
+
+      return rt;
+    }
+
+    function sa() {
+      var diff= document.getElementById("wasd");
+      var sum;
+      var now;
+      now=LoadProc()
+      var date1 = new Date(now);//現在時間
+      var date2 = new Date('2022-10-31 12:01:00');//予約時間
+
+      sum=date2.getTime() - date1.getTime();
+      //diff.innerHTML= sum/(60*60*1000)+"時間"
+      diff.innerHTML= sum+"　ミリ秒";
+    }
+  </script>
+</head>
+<body onload="LoadProc(); sa();">
+現在の時刻:
+   <div id="DateTimeDisp"></div>
+アラームまで
+   <div id="wasd"></div>
+</body>
+</html>
